@@ -131,16 +131,15 @@
   <!-- 0. Nama -->
   <div class="screen active" data-screen="0">
     <h1>💌 Masukkan Nama Kamu</h1>
-    <p>Biar aku tahu ini spesial buat siapa ✨</p>
-    <input type="text" id="namaInput" placeholder="Yuk isi nama kamu dulu ya 🙏">
+    <input type="text" id="namaInput" placeholder="Yuk isi nama kamu dulu yakk">
     <br>
     <button onclick="mulai()">Lanjutkan</button>
   </div>
 
   <!-- 1. Greeting -->
   <div class="screen" data-screen="1">
-    <h1 id="sapaan">Hai kamu! 👋</h1>
-    <p>Tunggu dulu ya.. Ada sesuatu buat kamu 🫣</p>
+    <h1 id="sapaan">aloo raaa! 👋🏻</h1>
+    <p>Tunggu dulu yakk.. Ada sesuatu buat kamu 🫣</p>
     <img class="gif" src="https://htmlku.com/0/panda/panah.gif" alt="panda">
     <br>
     <button onclick="next()">Sentuh LOVEnya 💗</button>
@@ -149,8 +148,8 @@
   <!-- 2. Intro kuis -->
   <div class="screen" data-screen="2">
     <img class="gif" src="https://htmlku.com/0/panda/pusn.gif" alt="panda">
-    <h1>Alooo Kamuuu 😋</h1>
-    <p>Jawab pertanyaanku ini yaa 🤣 Geser slidernya sesuka hati kamu ya!</p>
+    <h1>Alooo raaa 😋</h1>
+    <p>Jawab pertanyaanku ini yaa 🤣 Geser slidernya sesuka hati kamu yakk!</p>
     <button onclick="next()">Lanjut 👉🏻</button>
   </div>
 
@@ -207,7 +206,7 @@
   <div class="screen" data-screen="9">
     <img class="gif" src="https://feeldreams.github.io/mndkat.gif" alt="panda">
     <h1>Panggilan Kamu ke Aku? 🫣</h1>
-    <input type="text" id="panggilan" placeholder="Contoh: Sayang, Bebeb, dll">
+    <input type="text" id="panggilan" placeholder="">
     <button onclick="next()">Lanjut 👉🏻</button>
   </div>
 
@@ -298,7 +297,7 @@ function kirimWA(){
 
   const teks = encodeURIComponent(`Halo, ini jawaban dari ${nama}:\n\n${jawaban}`);
   // Ganti 62812xxxxxxx dengan nomor WhatsApp tujuan (format internasional tanpa +)
-  const nomor = "62812xxxxxxx";
+  const nomor = "6285718762571";
   window.open(`https://wa.me/${nomor}?text=${teks}`, '_blank');
 }
 </script>
