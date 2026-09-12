@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>Untuk Kamu 💌</title>
+<style>
+  :root{
+    --pink:#ff6f9c;
+    --pink-dark:#e84f81;
+    --pink-light:#ffe3ee;
+    --purple:#a86bd6;
+    --bg1:#ffd6e8;
+    --bg2:#ffb3d1;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(160deg,var(--bg1),var(--bg2));
+    padding:20px;
+  }
+  .card{
+    background:#fff;
+    border-radius:24px;
+    max-width:420px;
+    width:100%;
+    padding:32px 24px;
+    box-shadow:0 20px 40px rgba(232,79,129,.25);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .screen{display:none;animation:fadeIn .5s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  h1{font-size:1.4rem;color:var(--pink-dark);margin:10px 0;}
+  p{color:#666;line-height:1.5;}
+  img.gif{width:150px;height:150px;object-fit:contain;margin:10px auto;display:block;border-radius:16px;}
+  input[type=text], textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:14px;
+    border:2px solid var(--pink-light);
+    outline:none;
+    font-size:1rem;
+    margin-top:12px;
+    resize:none;
+    font-family:inherit;
+  }
+  input[type=text]:focus, textarea:focus{border-color:var(--pink);}
+  input[type=range]{
+    width:100%;
+    margin-top:16px;
+    accent-color:var(--pink-dark);
+  }
+  .percent{
+    font-weight:bold;
+    color:var(--pink-dark);
+    font-size:1.6rem;
+    margin-top:6px;
+  }
+  button{
+    background:linear-gradient(135deg,var(--pink),var(--purple));
+    color:#fff;
+    border:none;
+    padding:13px 28px;
+    border-radius:30px;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:20px;
+    transition:transform .15s;
+    box-shadow:0 8px 18px rgba(232,79,129,.35);
+  }
+  button:hover{transform:translateY(-2px) scale(1.03);}
+  button:active{transform:scale(.97);}
+  .dots{margin-top:18px;display:flex;justify-content:center;gap:6px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:#f1c6d8;}
+  .dot.on{background:var(--pink-dark);}
+  .chat-box{
+    text-align:left;
+    background:var(--pink-light);
+    border-radius:14px;
+    padding:12px;
+    max-height:180px;
+    overflow-y:auto;
+    margin-top:14px;
+    font-size:.9rem;
+  }
+  .chat-box p{margin:6px 0;color:#444;}
+  .heart{
+    position:absolute;
+    top:-10px;
+    font-size:1.2rem;
+    animation:fall 4s linear infinite;
+    opacity:.7;
+  }
+  @keyframes fall{
+    from{transform:translateY(-20px) rotate(0deg);}
+    to{transform:translateY(480px) rotate(360deg);}
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+
+  <!-- 0. Nama -->
+  <div class="screen active" data-screen="0">
+    <h1>💌 Masukkan Nama Kamu</h1>
+    <p>Biar aku tahu ini spesial buat siapa ✨</p>
+    <input type="text" id="namaInput" placeholder="Yuk isi nama kamu dulu ya 🙏">
+    <br>
+    <button onclick="mulai()">Lanjutkan</button>
+  </div>
+
+  <!-- 1. Greeting -->
+  <div class="screen" data-screen="1">
+    <h1 id="sapaan">Hai kamu! 👋</h1>
+    <p>Tunggu dulu ya.. Ada sesuatu buat kamu 🫣</p>
+    <img class="gif" src="https://htmlku.com/0/panda/panah.gif" alt="panda">
+    <br>
+    <button onclick="next()">Sentuh LOVEnya 💗</button>
+  </div>
+
+  <!-- 2. Intro kuis -->
+  <div class="screen" data-screen="2">
+    <img class="gif" src="https://htmlku.com/0/panda/pusn.gif" alt="panda">
+    <h1>Alooo Kamuuu 😋</h1>
+    <p>Jawab pertanyaanku ini yaa 🤣 Geser slidernya sesuka hati kamu ya!</p>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <!-- 3-8 Slider Quiz -->
+  <div class="screen" data-screen="3">
+    <img class="gif" src="https://htmlku.com/0/panda/pusn.gif" alt="panda">
+    <h1>Seberapa <b>Baik</b> Aku? 🫢</h1>
+    <input type="range" min="0" max="100" value="50" id="s1" oninput="upd('s1','p1')">
+    <div class="percent" id="p1">50%</div>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <div class="screen" data-screen="4">
+    <img class="gif" src="https://htmlku.com/0/panda/cubit.gif" alt="panda">
+    <h1>Seberapa <b>Random</b> Aku? 😆</h1>
+    <input type="range" min="0" max="100" value="50" id="s2" oninput="upd('s2','p2')">
+    <div class="percent" id="p2">50%</div>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <div class="screen" data-screen="5">
+    <img class="gif" src="https://htmlku.com/0/panda/sinisini.gif" alt="panda">
+    <h1>Seberapa <b>Gaje</b> Aku? 😝</h1>
+    <input type="range" min="0" max="100" value="50" id="s3" oninput="upd('s3','p3')">
+    <div class="percent" id="p3">50%</div>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <div class="screen" data-screen="6">
+    <img class="gif" src="https://feeldreams.github.io/smprt.gif" alt="panda">
+    <h1>Seberapa <b>Nakal</b> Aku? 🙄</h1>
+    <input type="range" min="0" max="100" value="50" id="s4" oninput="upd('s4','p4')">
+    <div class="percent" id="p4">50%</div>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <div class="screen" data-screen="7">
+    <img class="gif" src="https://htmlku.com/0/panda/ciumin.gif" alt="panda">
+    <h1>Seberapa Nyebelin Aku 😆</h1>
+    <input type="range" min="0" max="100" value="50" id="s5" oninput="upd('s5','p5')">
+    <div class="percent" id="p5">50%</div>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <div class="screen" data-screen="8">
+    <img class="gif" src="https://htmlku.com/0/panda/cilukba.gif" alt="panda">
+    <h1>Seberapa Asik Aku 😁</h1>
+    <input type="range" min="0" max="100" value="50" id="s6" oninput="upd('s6','p6')">
+    <div class="percent" id="p6">50%</div>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <!-- 9. Panggilan -->
+  <div class="screen" data-screen="9">
+    <img class="gif" src="https://feeldreams.github.io/mndkat.gif" alt="panda">
+    <h1>Panggilan Kamu ke Aku? 🫣</h1>
+    <input type="text" id="panggilan" placeholder="Contoh: Sayang, Bebeb, dll">
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <!-- 10. Pesan -->
+  <div class="screen" data-screen="10">
+    <img class="gif" src="https://htmlku.com/0/panda/ciumpipi.gif" alt="panda">
+    <h1>Pesan Buat Aku? 🫣</h1>
+    <textarea id="pesan" rows="3" placeholder="Tulis pesan kamu di sini..."></textarea>
+    <button onclick="next()">Lanjut 👉🏻</button>
+  </div>
+
+  <!-- 11. Selesai -->
+  <div class="screen" data-screen="11">
+    <img class="gif" src="https://feeldreams.github.io/emawh.gif" alt="panda">
+    <h1>Yeaayy!! 🥳</h1>
+    <p>Makasih udah mau jawab semua pertanyaanku 😋💭<br>Kirim hasil jawabannya ke WhatsApp aku yaa 🫣🩷</p>
+    <button onclick="kirimWA()">💌 Kirim</button>
+
+    <div class="chat-box" id="chatBox">
+      <p><i>Belum ada balasan...</i></p>
+    </div>
+    <textarea id="balasan" rows="2" placeholder="Kamu bisa balas di sini"></textarea>
+    <button onclick="kirimBalasan()">💬 Balas</button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+</div>
+
+<script>
+let idx = 0;
+const total = 12;
+let nama = "";
+
+function renderDots(){
+  const d = document.getElementById('dots');
+  d.innerHTML='';
+  for(let i=1;i<total;i++){
+    const dot=document.createElement('div');
+    dot.className='dot'+(i<=idx?' on':'');
+    d.appendChild(dot);
+  }
+}
+
+function showScreen(i){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelector(`[data-screen="${i}"]`).classList.add('active');
+  renderDots();
+}
+
+function mulai(){
+  const val = document.getElementById('namaInput').value.trim();
+  nama = val || "Kamu";
+  document.getElementById('sapaan').textContent = `Hai ${nama}! 👋`;
+  idx = 1;
+  showScreen(idx);
+}
+
+function next(){
+  if(idx < total-1){
+    idx++;
+    showScreen(idx);
+  }
+}
+
+function upd(rangeId, labelId){
+  document.getElementById(labelId).textContent = document.getElementById(rangeId).value + '%';
+}
+
+function kirimWA(){
+  const jawaban = [
+    `Baik: ${document.getElementById('s1').value}%`,
+    `Random: ${document.getElementById('s2').value}%`,
+    `Gaje: ${document.getElementById('s3').value}%`,
+    `Nakal: ${document.getElementById('s4').value}%`,
+    `Nyebelin: ${document.getElementById('s5').value}%`,
+    `Asik: ${document.getElementById('s6').value}%`,
+    `Panggilan: ${document.getElementById('panggilan').value || '-'}`,
+    `Pesan: ${document.getElementById('pesan').value || '-'}`
+  ].join('\n');
+
+  const teks = encodeURIComponent(`Halo, ini jawaban dari ${nama}:\n\n${jawaban}`);
+  // Ganti 62812xxxxxxx dengan nomor WhatsApp tujuan (format internasional tanpa +)
+  const nomor = "62812xxxxxxx";
+  window.open(`https://wa.me/${nomor}?text=${teks}`, '_blank');
+}
+
+function kirimBalasan(){
+  const teks = document.getElementById('balasan').value.trim();
+  if(!teks) return;
+  const box = document.getElementById('chatBox');
+  if(box.querySelector('i')) box.innerHTML = '';
+  const p = document.createElement('p');
+  p.textContent = `${nama}: ${teks}`;
+  box.appendChild(p);
+  box.scrollTop = box.scrollHeight;
+  document.getElementById('balasan').value = '';
+}
+</script>
+</body>
+</html>
